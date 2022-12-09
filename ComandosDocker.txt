@@ -1,4 +1,7 @@
 Comandos Docker:
+   Flag '--help': Todo comando no docker tem acesso a essa flag. Lista as opções disponíveis para o comando
+      Ex.: docker run --help
+   
    'docker run <nome_image>': usado para executar uma imagem em um novo container:
       Flags:
          -it: usado para habilitar o terminal de interação, permitindo interagir com o container que está executando a imagem
@@ -9,6 +12,8 @@ Comandos Docker:
 	    Ex.: docker run -d nginx
 	 --name: Define um noma para um novo container
 	    Ex.: docker run --name container_python python
+	 --rm: usado para remover o container após finalizar a execução
+	    Ex.: docker run --rm <container>
 	 
    'docker stop <'container id' ou 'nome'>': Encerra a execução de um container:
       Flags:
@@ -21,13 +26,60 @@ Comandos Docker:
             
    'docker start <id>': Iniciar um container parado
       Flags:
-         -
+         -i: usado para habilitar o terminal de interação, permitindo interagir com o container que está executando a imagem
+            Ex.: docker start -i <container>
          
    'docker logs <id>': usado para exibir os logs de determinada execução
       Flags:
       	-f: comando para ficar escutando os logs
       	   Ex.: docker logs -f 327
    
-   'docker rm <id>': remove containers parados da sua máquina
+   'docker rm <id>': remove containers parados da sua máquina.
       Flags:
-      	-f: força a remoção do container caso esteja executando
+      	-f: força a remoção do container caso esteja executando.
+      	
+   'docker build <diretorio_dockerfile': gera uma imagem docker a partir de um dockerfile.
+      Flags:
+      	-t: usado para nomear uma imagem no processo de criação
+      	Ex.: docker docker build -t <nome_imagem>:<tag> <dir>
+      	
+   'docker image ls': usado para listas a imagens locais.   	
+   
+   'docker pull <imagem>': usado para fazer o download de imagens do hub.
+   
+   'docker tag <id_imagem> <nome_imagem>': usando para nomear ou renomear uma imagem.
+   
+   'docker tag <id_imagem> <nome_imagem>:<tag>': criar uma tag/versionar uma imagem.
+      	
+   'docker rmi <id_img>': usado para remover imagens
+      Flags:
+         -f: força a remoção da imagem caso esteja seja utilizada por um container
+
+   'docker system prune': remove imagens, containers e networks não utilizados
+   
+   'docker cp <dir_file> <dir_destino>': usado para copiar um arquivo para ou de um container para ou de um diretório ou outro container. Para buscar o arquivo dentro do container, usar '<nome_container>:<dir_arquivo>'.
+         
+   'docker top <container': usado para verificar dados de execução de um container.
+          
+   'docker inspect <container': usado para verificar diversar informações como: id, data de criação, imagem e muito mais...
+   
+   'docker stats': usado para verificar os processos que estão sendo executados em um container
+   
+   'docker login': usado para configurar as credenciais de acesso do Docker Hub
+
+   'docker logout': usado para deleter suas credenciais locais do Docker Hub
+   
+   'docker push <img>': usado para enviar imagens para o Docker Hub
+   
+   
+Criando uma imagem docker:
+   Para criar uma imagem é necessário fazer o build dela.
+      Usando o comando docker build
+   Precisamos de um arquivo Dockerfile;
+   Instruções:
+      FROM: Imagem base
+      WORKDIR: diretório da aplicação
+      EXPOSE: porta da aplicação
+      COPY: quais arquivos precisam ser copiados
+         
+
