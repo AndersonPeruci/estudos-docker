@@ -1,0 +1,33 @@
+Comandos Docker:
+   'docker run <nome_image>': usado para executar uma imagem em um novo container:
+      Flags:
+         -it: usado para habilitar o terminal de interação, permitindo interagir com o container que está executando a imagem
+            Ex.: docker run -it python
+	 -d: usado para executar um container em background
+	    Ex.: docker run -d -p 80:80 nginx
+	 -p: expõe uma porta para acessar o container
+	    Ex.: docker run -d nginx
+	 --name: Define um noma para um novo container
+	    Ex.: docker run --name container_python python
+	 
+   'docker stop <'container id' ou 'nome'>': Encerra a execução de um container:
+      Flags:
+         -
+         
+   'docker ps' ou 'docker container ls': exibe quais containers estão sendo executados no momento:
+      Flags:
+         -a: usando para exibir containers já executados na máquina
+            Ex.: docker ps -a
+            
+   'docker start <id>': Iniciar um container parado
+      Flags:
+         -
+         
+   'docker logs <id>': usado para exibir os logs de determinada execução
+      Flags:
+      	-f: comando para ficar escutando os logs
+      	   Ex.: docker logs -f 327
+   
+   'docker rm <id>': remove containers parados da sua máquina
+      Flags:
+      	-f: força a remoção do container caso esteja executando
