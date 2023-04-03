@@ -83,3 +83,24 @@ Criando uma imagem docker:
       COPY: quais arquivos precisam ser copiados
          
 
+Volumes:
+   Uma forma rápida de persistir dados em aplicações e não depender de containers para isso
+	
+   Tipos de volumes:
+	Anônimos: Diretórios criados pela flag -v, porém com um nome aleatório
+		Para criar um volume anônimo é necessário usar o parâmetro '-v /path'. 
+		Ex.: docker run -d -p 80:80 --name container_name --rm -v /data image_name
+	Nomeados: São volumes com nomes, podemos nos referir a este volume facilmente e saber para que eles são utilizados no nosso ambiente
+		Para criar um volume nomeado é necessário usar o parâmetro '-v volume_name:/path'. 
+		Ex.: docker run -d -p 80:80 --name container_name --rm -v volume_name:/data image_name
+	
+	Bind mounts: Uma forma de salvar dados na nossa máquina, sem o gerenciamento do Docker, informamos um diretório para este fim
+		Para criar um volume nomeado é necessário definir o diretório na nossa máquina e o diretório no container, assim: '/nossa_maquina:/path'. 
+		Ex.: docker run -d -p 80:80 --name container_name --rm -v /nossa_maquina:/path image_name
+	
+	Se atentar em criar o o volume no diretório da imagem, configurado no Dockerfile em WORKDIR.
+	
+	
+	
+   
+   
