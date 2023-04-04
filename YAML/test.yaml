@@ -1,0 +1,28 @@
+nome: "Matheus"
+idade: 30
+
+# Dados confidenciais
+documento:
+  tipo: "CPF"
+  valor: "3546365463" # Valor inválido
+
+resultado:
+  pontuacao: 9.9
+  materias: ["Eng","Math","Sci"]
+  notas:
+    - 9.9
+    - 9.9
+    - 10
+  faltas: {Eng: 1, Math: 1, Sci: 0}
+  aproveitamento: 
+    Eng: 90 
+    Math: 90 
+    Sci: 100
+observacao: ~
+comentario: null
+
+ativo: True
+em_debito: False
+admin: On # True
+tech: Off # False
+

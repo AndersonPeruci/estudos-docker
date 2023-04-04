@@ -141,5 +141,10 @@ Networks:
  		
  		'docker network prune': usado para remover todas as redes que não estão sendo usadas.
  		
+ 		'docker network connect <rede> <id_container>': Usado para conectar um container em uma rede.
  		
+ 		'docker network disconnect <rede> <id_container>': Usado para desconectar um container em uma rede.
+ 		
+ 		'docker network inspect': Usado para inspecionar uma network
+ 		 		
    
