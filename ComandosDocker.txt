@@ -146,5 +146,41 @@ Networks:
  		'docker network disconnect <rede> <id_container>': Usado para desconectar um container em uma rede.
  		
  		'docker network inspect': Usado para inspecionar uma network
- 		 		
-   
+ 		
+Docker Compose:
+	Docker Compose é uma ferramenta para rodas múltiplos containers.
+	
+	Para o arquivo, o nome deve ser docker-compose.yaml.
+	
+	No arquivo, é necessário usar o parâmetro 'version'.
+	
+	O parâmetro 'service' é usado para configurar os serviços que o compose irá subir.
+
+	O parâmetro 'volume' é usado para definir os volumes que serão usados pelo serviços.
+	
+	'docker compose up': Usado para executar a estrutura em Compose.
+	   Flags:
+	      -d: Usado para executar o Compose em modo detached. 
+   	         Ex.: docker compose up -d
+	'docker compose down': Usado para parar executar a estrutura em Compose rodando em background.
+	
+	Variáveis de ambiente:
+		Para definir variáveis de ambiente, devemos usar um arquivo base para definir as variáveis.
+		As variáveis podem ser chamadas pela sintaxe ${VARIVAEL}'
+		No arquivo docker-compose, use o parâmetro env_file para adicionar uma lista com o caminho dos arquivos de env var
+		
+	Network:
+		É possível definir networks para os cada serviço contido no docker-compose.
+		Para criar uma network, bata usar o parâmetro 'networks' na raiz do arquivo para definir um network.
+		Para usar a network criada, usar o parâmetro 'networks' dentro do serviço que deseja configurar a network.
+		
+	Build de imagem:
+		Substituir o params 'image'pelo params 'build' e indicar o caminho da imagem que deseja buildar antes de usar no compose.
+		
+	Bind Mount:
+		Indicar no params 'volume' do serviço o caminho raiz do arquivo que recerá a edição e depois o caminho configurado no WORKDIR da imagem:
+		Ex.: 
+		   volume:
+		      - "/file_path:/workdir_path" 
+	'docker compose ps': Usado para verificar um resumo dos serviços que subiram ao executar o compose.
+		

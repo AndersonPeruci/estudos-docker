@@ -1,0 +1,31 @@
+version: '3.3'
+
+services:
+  db:
+    container_name: mysqlcompose_container
+    build: ./connect_container/mysql/
+    restart: always
+    env_file:
+      - ./config/db.env
+    ports:
+      - "3306:3306"
+    networks:
+      - dockercompose
+
+  backend:
+    container_name: flaskcompose_container
+    depends_on:
+      - db
+    build: ./connect_container/flask/
+    ports:
+      - "5000:5000"
+    restart: always
+    volumes:
+      - "/home/aperuci/Documentos/Estudos/Docker/Compose/bind_mount_compose/connect_container/flask:/app"
+    networks:
+      - dockercompose
+
+networks:
+  dockercompose: 
+    driver: bridge
+    

@@ -1,0 +1,22 @@
+Passo-a-passo para criar um conexão em dois contêineres saundo Flask e MySQL como exemplo.
+
+1. Configurar Dockerfile e Schema para o banco de dados;
+
+2. Buildar a imagem do banco de dados. 
+    Comando: $ docker build -t mysqlnetworkapi .;
+
+3. Criar network para conectar os dois contêineres. 
+    Comando: $ docker network create flasknetwork;
+
+4. Executar o container com a imagem da base de dados.
+    Comando: docker run -d -p 3306:3306 --name mysql_api_container --rm --network flasknetwork -e MYSQL_ALLOW_EMPTY_PASSWORD=True mysqlnetworkapi
+
+5. Codificar a conexão com o banco de dados, se atentando no parâmetro 'MYSQL_HOST' que deve receber o nome do container que está executando a imagem do DB;
+
+6. Configurar o Dockerfile da aplicação Flask para executar a aplicação;  
+
+7. Buildar a imagem da aplicação Flask. 
+    Comando: $ docker build -t flaskapinetwork .;
+
+8. Executar o container com a imagem da aplicação Flask.
+    Comando: $ docker run -d -p 5000:5000 --name flask_api_container --rm --network flasknetwork flaskapinetwork
