@@ -184,6 +184,7 @@ Docker Compose:
 		      - "/file_path:/workdir_path" 
 	'docker compose ps': Usado para verificar um resumo dos serviços que subiram ao executar o compose.
 	
+	
 Orquestração de containers:
 	Orquestração é o ato de conseguir gerenciar e escalar os containers da nossa aplicação. Basicamente é um serviço que reage sobre outros serviõs, verificando se os serviços estão funcionando como deveriam.
 	Alguns serviços de orquestração: Docker Swarm, Kubernetes e Apache Mesos.
@@ -244,8 +245,46 @@ Orquestração de containers:
 			   Tags:
 			      --image: Usado para atualizar a imagem do serviço
 			         Ex.: docker service update --image <imagem> <servico>
+			      
+			      --network: Usado para atualizar a network usada
+		      	         Ex.: docker service update --network <network> <servico>
 			
+		Criando network para Swarm
+			Para o Swarm devemos criar uma network com o driver 'overlay'
+			   Ex.: 'docker network create --driver overlay swarmnetwork'
+		        
+		        Para criar um serviço e atribuir a nova network, deverá usar a flag --network <network>
+		           Ex.: docker service create --name <nome> --repicas <numero> --network <netowork> <imagem>'
+			          
+	Kubernetes:
+		É uma ferramenta de orquestração de containers.
+		Permite a criação de múltiplos containers em diferentes máquinas.
+		As imagens usadas pelo kubernetes precisam estar no hub do Docker
+		
+		Conceitos fundamentais:
+			Control Pane: Onde é gerenciado o controle dos processos dos Nodes.
+			Nodes: Máquinas que são gerenciadas pelo Control Plane.
+			Deployment: A execução de uma imagem/projeto em um Pod.
+			Pod: Um ou mais containers que estão em um Node.
+			Services: Serviços que expõe os Pods ao mundo externo.
+			kubectl: Cliente de linha de comando para Kubernetes.
 			
-			                                                                                                                               
-		
-		
+		Minikube: 
+			Usado para configurar um cluster Kubernetes.
+			
+			'minikube start' ou 'minikube start --driver=<driver>': Usado para inicializar o Minikube. O driver vai depender de como foi sua instalação das dependências.
+			
+			'minikube stop': Usado para parar a execução do minikube.
+			 
+			'minikube dashboard': Usado para visualizar a dashboard para ver detalhamentos do projeto, como serviços, pods e etc.
+			   Flags:
+			      --url: Usado para encontrar a URL da dashboard. 
+		   	         Ex.: minikube dashboard --url
+			
+			 
+ 		
+			 
+			 
+			 
+			 
+			 
