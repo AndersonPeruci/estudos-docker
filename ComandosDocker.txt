@@ -183,4 +183,69 @@ Docker Compose:
 		   volume:
 		      - "/file_path:/workdir_path" 
 	'docker compose ps': Usado para verificar um resumo dos serviços que subiram ao executar o compose.
+	
+Orquestração de containers:
+	Orquestração é o ato de conseguir gerenciar e escalar os containers da nossa aplicação. Basicamente é um serviço que reage sobre outros serviõs, verificando se os serviços estão funcionando como deveriam.
+	Alguns serviços de orquestração: Docker Swarm, Kubernetes e Apache Mesos.
+	
+	Docker Swarm:
+		É uma ferramenta do Docker para orquestrar containers.
+		
+		Conceitos:
+			Nodes: é uma instância que participa do Swarm.
+			Manager Node: Node que gerencia os demais Nodes.
+			Worker Node: Nodes que trabalham em função do Manager.
+			Service: Um conjunto de tasks que o Manager Node manda o Work Node executar.
+			Task: Comandos que são executados nos Nodes.
+		
+		Comandos:
+			'docker swarm init':  Usado para iniciar o swarm. Fará com que a máquina vire um Node e também transforma o Node em um Manager. 
+				--advertise-addr: usado para indicar o IP address do servidor.
+
+			'docker swarm leave': Usado para encerrar o swarm. 			
+
+			'docker node ls': Suado para verificar quais Nodes estão ativos.
+			
+			'docker swarm join --token <TOKEN> <IP>:<PORTA>': Usado para adicionar um novo serviço. Essa nova máquina entrará como Worker.
+			
+			'docker service create --name <nome> <imagem>': Usado para iniciar um serviço com o comando.
+				
+			'docker service ls': usado para listar os serviços que estão rodando. Só pode usar esse comando no Manager, máquinas gerenciadoras.
+			
+			'docker service rm <nome>': Usado para remover um serviço. Comando do Manager.
+			'docker service create --name <nome> --replicas <numero> <imagem>': Usado para criar um serviço com um número maior de réplicas. Desta forma, uma task será emitida, replicando este serviço nos Workers.
+			
+			'docker swarm join-token manager': Usado para checar o token do Swarm, caso precise. 
+			
+			'docker info': Usado para verificar detalhes do Swarm que o Docker está utilizando.
+			
+			'docker node rm <id>': Usado para remover um node no sistema Swarm.
+			   Tags:
+			      -f: Usado para forçar a remoção caso esteja executando algum serviço
+			         Ex.: docker node rm <id> -f
+			         
+			'docker service inspect <id>': Usado para ver mais detalhes do serviço. Deve ser rodado no Manager.
+			
+			'docker service ps': Usado para ver quais containers estão rodando. Verá todos os containers da execução Swarm
+			   Tags:
+			      -a: Usado para ver containers que não estão em execução
+			         Ex.: docker service inspect <id> -a
+			
+			'docker stack deploy -c <docker-compose.yaml'> <nome>': Usado para rodar Compose com Swarm.
+			
+			'docker service scale <nome>=<replicas>': Usado para criar novas réplicas nos Workers Nodes.
+			
+			'docker node update --availability <disponibilidade> <id>': Usado para atualizar a disponibilidade de um serviço.
+			   Ex. disponibilidade: 
+			      - drain: Faz com que o serviço não receba mais 'ordens' do Manager
+			      - active: Faz com que o serviço receba mais 'ordens' do Manager
+			
+			'docker service update': Usado para atualizar configuração dos nodes com base nas flags usadas.
+			   Tags:
+			      --image: Usado para atualizar a imagem do serviço
+			         Ex.: docker service update --image <imagem> <servico>
+			
+			
+			                                                                                                                               
+		
 		
