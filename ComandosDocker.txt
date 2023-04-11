@@ -281,10 +281,55 @@ Orquestração de containers:
 			      --url: Usado para encontrar a URL da dashboard. 
 		   	         Ex.: minikube dashboard --url
 			
+			'minikube service <nome_service>': Usado para executar um service Kubernetes no Minikube.
+			
 			 
- 		
+ 		'kubectl create deployment <nome> --image=<docker_hub_image>': Usado para criar um deployment.
 			 
+		'kubectl get deployments': Usado para verificar o Deployment.
+		
+		'kubectl describe deployments': Usado para receber mais detalhes sobre o Deployment.
+		
+		'kubectl get pods': Usado para verificar os Pods.
+		
+		'kubectl describe pods': Usado para receber mais detalhes sobre os Pods.
+		
+		'kubectl config view': Usado para verificar a configuração do Kubernetes.
+		
+		'kubectl expose depoloyment <nome> --type=<tipo> --port=<port>
 			 
+		'kubectl get services': Usado para verificar todos os serviços.
+		
+		'kubectl describe services/<nome_serviço>': Usado para obter mais informações de um serviço.
+		
+		'kubectl scale deployment/<nome> --replicas=<numero>': Usado para replicar a aplicação para outros Pods.
 			 
-			 
-			 
+		'kubectl get rs': Usado para verificar as réplicas criadas.		
+		
+		'kubectl scale deployment/<nome> --replicas=<numero_menor>': Usada para reduzir o número de Pods.
+		
+		'kubectl set image deployment/<nome> <nome_container>=<nova_imagem>': Usado para atualizar a imagem do container, lembrando que a imagem sempre deve ser diferente da atual em relação as versões.	 
+		
+		'kubectl rollout status deployment/<nome>': Usado para verificar a ação de desfazer alterações.
+		
+		'kubectl rollout undo deployment/<nome>': Usado para desfazer alterações, fazendo rollback.
+		
+		'kubectl delete service <nome>': Usado para deletar servico do kubernetes, e com isso os pods não terão acesso ao mundo externo.
+		
+		'kubectl delete deployment <nome>': Usado para deletar deployment do kubernetes.
+		
+
+		Modo declarativo:
+			O modo interativo é guiado por um arquivo, semelhante ao Docker Compose. Desta maneira tornamos nossas configurações mais simples e centralizamos tudo em um comando. O arquivo é YAML.
+		
+			Chaves mais utilizadas:
+				apiVersion: versão utilizada da ferramenta.
+				kind: Tipo do arquivo (Deployment, Service)
+				metadata: Descrever algum objeto, inserindo chaves como name.
+				replicas: número de réplicas de Nodes/Pods
+				containers: Definir as especificações de containers como: nome e imagem.
+				
+			'kubectl apply -f <arquivo_yaml>': Usado para executar o arquivo YAML e criar o deployment. Não há nome obrigatório. (Usado para Deployment e Service)
+			
+			'kubectl delete -f <arquivo_yaml>': Usado para parar a execução de um deployment quando iniciado por um arquivo. (Usado para Deployment e Service)
+						
